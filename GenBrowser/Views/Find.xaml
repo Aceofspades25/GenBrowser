@@ -1,0 +1,39 @@
+﻿<Window x:Class="Find"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:gb="clr-namespace:GenBrowser" 
+    Title="Find sequence" Height="175" Width="400" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <gb:FindViewModel x:Key="FindContext" />
+    </Window.Resources>
+    <Grid Margin="10" DataContext="{StaticResource FindContext}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Species:" VerticalAlignment="Center" />
+        <TextBlock Grid.Row="1" Text="Search sequence:" VerticalAlignment="Center" />
+        <ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding MainViewModel.Data.Sequences}" DisplayMemberPath="SpeciesName" SelectedValuePath="SpeciesID" SelectedValue="{Binding SpeciesIndex}" />
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding SearchString}" />
+        <Button Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Width="80" VerticalAlignment="Top" Command="{Binding SearchCommand}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="/GenBrowser;component/Resources/Search16.png" Stretch="None" Grid.RowSpan="2" />
+                <TextBlock Grid.Column="1" Text="Search" Grid.RowSpan="2" />
+            </Grid>
+        </Button>
+    </Grid>
+</Window>

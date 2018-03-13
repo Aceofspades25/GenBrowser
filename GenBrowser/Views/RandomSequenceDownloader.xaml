@@ -1,0 +1,47 @@
+﻿<Window x:Class="RandomSequenceDownloader"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Random sequence downloader" Height="321" Width="371">
+    <Grid Margin="10,10,10,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="*"/>                      
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Text="Source:" />
+        <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Text="Sequence count:" />
+        <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Text="Sequence length:" />
+        <TextBlock Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Text="Sequence start index:" />
+        <TextBlock Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Text="Species:" />
+        <TextBlock Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" Text="Chromosome:" />
+        <TextBlock Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" Text="From:" />
+        <TextBlock Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" Text="To:" />        
+        <TextBlock Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" Text="File name:" />
+
+        <ComboBox x:Name="ddlSource" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" />
+        <TextBox x:Name="tbxCount" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="25" />
+        <TextBox x:Name="tbxLength" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Text="300" />
+        <TextBox x:Name="tbxStartIndex" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Text="0" />
+        <ComboBox x:Name="ddlSpecies" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" />
+        <ComboBox x:Name="ddlChromosome" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" />
+        <TextBox x:Name="tbxFrom" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Text="0" />
+        <TextBox x:Name="tbxTo" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Text="228333870" />
+        <TextBox x:Name="tbxFileName" Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" Text="Set1.txt" />
+        <Button x:Name="btnRun" Content="Run" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="10" VerticalAlignment="Top" Width="75"/>
+        
+
+
+    </Grid>
+</Window>

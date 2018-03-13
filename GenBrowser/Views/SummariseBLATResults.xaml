@@ -1,0 +1,28 @@
+﻿<Window x:Class="SummariseBLATResults"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Random sequence downloader" Height="214" Width="513">
+    <Grid Margin="10,10,10,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Text="Queries:" />
+        <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Text="Results:" />
+        <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Text="Output:" />
+
+        <TextBox x:Name="tbxQueries" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="Set1.txt" />
+        <TextBox x:Name="tbxResults" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="BLAT Results - Set1.html" />
+        <TextBox x:Name="tbxOutput" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Text="Set1Summary.csv" />
+
+        <Button x:Name="btnRun" Content="Run" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="10" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</Window>

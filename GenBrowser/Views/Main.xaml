@@ -1,0 +1,304 @@
+﻿<Window x:Name="window" x:Class="Main"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:gb="clr-namespace:GenBrowser" 
+    Title="Sequence viewer" Height="600" Width="1150">
+    <Window.Resources>
+        <gb:BaseToStyleConverter x:Key="BaseToStyleConverter" />
+        <gb:VisibilityConverter x:Key="InverseVisibilityConverter" Invert="True" />
+        <gb:BasePairDimmingConverter x:Key="BasePairDimmingConverter" />
+        <gb:MainViewModel x:Key="MainContext" />
+    </Window.Resources>
+    <Grid DataContext="{StaticResource MainContext}">
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="24"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+        <Menu Grid.ColumnSpan="1" IsMainMenu="True" BorderBrush="#FFCD1515" BorderThickness="0,0,0,2">
+            <MenuItem Header="_File" Height="24">
+                <MenuItem Header="_Open" Command="{Binding OpenCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Open16.png" Stretch="None" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Save" Command="{Binding SaveCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Save16.png" Stretch="None" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Save _visible as" Command="{Binding SaveVisibleAsCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Save16.png" Stretch="None" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Save _dataset as" Command="{Binding SaveDatasetAsCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Save16.png" Stretch="None" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Edit" Height="24">
+                <MenuItem Header="_Find" Command="{Binding FindCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Search16.png" Stretch="None" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Selected range">
+                    <MenuItem Header="_Apply selected range" Command="{Binding CropCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="/GenBrowser;component/Resources/Cut16.png" Stretch="None" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Highlight selected range" Command="{Binding HighlightRangeCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="/GenBrowser;component/Resources/Highlight16.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Dim selected range" Command="{Binding DimRangeCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="/GenBrowser;component/Resources/Dim16.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Copy selected range" Command="{Binding CopyRangeCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="/GenBrowser;component/Resources/Copy16.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="_Highlighting">
+                    <MenuItem Header="_Highlight all" Command="{Binding HighlightAllCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="/GenBrowser;component/Resources/Highlight16.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Dim all" Command="{Binding DimAllCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="/GenBrowser;component/Resources/Dim16.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Count positions" Command="{Binding CountHighlightedCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="/GenBrowser;component/Resources/Info16.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="_Insert gaps" Command="{Binding InsertGapsCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Tool16.png" Stretch="None" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_View" Height="24">
+                <MenuItem Header="_Refresh" Command="{Binding RefreshCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Refresh16.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Sequence overview" Command="{Binding OverviewCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Overview16.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Tools" Height="24">
+                <MenuItem Header="_Clean sequence string" Command="{Binding CleanStringCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Tool16.png" Stretch="None" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Sequence inverter" Command="{Binding SequenceInvertCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Tool16.png" Stretch="None" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Codonify" Command="{Binding CodonifyCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Tool16.png" Stretch="None" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Fix line length" Command="{Binding FixLineLengthCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Tool16.png" Stretch="None" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Quality trimmer" Command="{Binding QualityTrimmerCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Tool16.png" Stretch="None" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Statistics" Height="24">
+                <MenuItem Header="_Sequence comparison" Command="{Binding SequenceCompareCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Tool16.png" Stretch="None" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Find all pairings" Command="{Binding FindPairingsCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Tool16.png" Stretch="None" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Options" Height="24">
+            </MenuItem>                      
+            <MenuItem Header="_Information" Height="24">
+                <MenuItem Header="_About" Command="{Binding AboutCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/GenBrowser;component/Resources/Info16.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <ScrollViewer x:Name="ScrollViewer" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Black" HorizontalScrollBarVisibility="Auto">
+            <Grid>
+                <Image Source="/GenBrowser;component/Resources/Logo.png" Stretch="None" Opacity="0.5" RenderTransformOrigin="0.5,0.5"
+                       Visibility="{Binding HasData,Converter={StaticResource InverseVisibilityConverter}}">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="-10"/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <ItemsControl Grid.Column="1" Name="PositionRowItemControl" ItemsSource="{Binding PositionRows}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" />
+                            <!-- Vertical stackpanel -->
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <!-- Horizontal stackpanel -->
+                                <StackPanel Orientation="Vertical" Style="{StaticResource SpeciesPanel}">
+                                    <!-- List of species names down the left -->
+                                    <TextBlock Text="" />
+                                    <ItemsControl ItemsSource="{Binding Species, Source={StaticResource MainContext}}" Style="{StaticResource SpeciesName}"/>
+                                </StackPanel>
+                                <ItemsControl ItemsSource="{Binding Positions}" x:Name="PositionItemsControl">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" />
+                                            <!-- Horizontal stackpanel -->
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Width="16">
+                                                <!-- Vertical stackpanel -->
+                                                <TextBlock Text="" Style="{StaticResource HeaderBlock}" ToolTip="{Binding ToolTip}" />
+                                                <ItemsControl ItemsSource="{Binding Species}" Opacity="{Binding Highlight, Converter={StaticResource BasePairDimmingConverter}}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding Base}" Style="{Binding Base, Converter={StaticResource BaseToStyleConverter}}" MouseDown="BlockSelected" />
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </ScrollViewer>
+        <StatusBar Grid.ColumnSpan="1" Grid.Row="2"  BorderBrush="#FFCD1515" BorderThickness="0,2,0,0">
+            <StatusBarItem>
+                <TextBlock Name="lblStatus" Text="{Binding StatusText}" />
+            </StatusBarItem>
+            <Separator />
+            <StatusBarItem>
+                <TextBlock Name="lblSpeciesCount" Text="{Binding SpeciesCount, StringFormat=Species: \{0:\,0\}}" />
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Name="lblSequenceLength" Text="{Binding TotalSequenceLength, StringFormat=Sequence length: \{0:\,0\}}" />
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Name="lblShowing" Text="{Binding DisplayLength, StringFormat=Showing: \{0:\,0\}}" />
+            </StatusBarItem>
+        </StatusBar>
+        <Grid Grid.Column="1" Grid.RowSpan="3" Margin="10,5,5,5">
+            <Grid.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.ColumnSpan="2" Text="Selected position properties" FontWeight="Bold" />
+            <TextBlock Grid.Row="1" Text="Species:" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SelectedSpecies}" />
+            <TextBlock Grid.Row="2" Text="File position:" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding SelectedPosition.FileIndex}" />
+            <TextBlock Grid.Row="3" Text="Display position:" />
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding SelectedPosition.DisplayIndex}" />
+            <TextBlock Grid.Row="4" Text="Base:" />
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding SelectedNucleobase.Base}" />
+            <CheckBox Grid.Row="5" Grid.ColumnSpan="2" Content="Highlight this position" IsChecked="{Binding SelectedPosition.Highlight}"/>
+
+            <TextBlock Grid.Row="7" Grid.ColumnSpan="2" Text="Range selection" FontWeight="Bold" />
+            <TextBlock Grid.Row="8" Text="Start:" />
+            <Grid Grid.Row="8" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{Binding Data.SpecifiedStartPosition, Mode=TwoWay, TargetNullValue='', UpdateSourceTrigger=LostFocus}" />
+                <Button Grid.Column="1" Width="20" Height="20" Command="{Binding InsertStartCommand}" ToolTip="Insert the selected index into this field">
+                    <Image Source="/GenBrowser;component/Resources/Insert16.png" Stretch="None" />
+                </Button>
+                <Button Grid.Column="2" Width="20" Height="20" Command="{Binding SelectStartPositionCommand}" ToolTip="Select this position">
+                    <Image Source="/GenBrowser;component/Resources/Select16.png" Stretch="None" />
+                </Button>
+            </Grid>
+            <TextBlock Grid.Row="9" Text="End:" />
+            <Grid Grid.Row="9" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{Binding Data.SpecifiedEndPosition, Mode=TwoWay, TargetNullValue='', UpdateSourceTrigger=LostFocus}" />
+                <Button Grid.Column="1" Width="20" Height="20" Command="{Binding InsertEndCommand}" ToolTip="Insert the selected index into this field">
+                    <Image Source="/GenBrowser;component/Resources/Insert16.png" Stretch="None" />
+                </Button>
+                <Button Grid.Column="2" Width="20" Height="20" Command="{Binding SelectEndPositionCommand}" ToolTip="Select this position">
+                    <Image Source="/GenBrowser;component/Resources/Select16.png" Stretch="None" />
+                </Button>
+            </Grid>
+            <TextBlock Grid.Row="10" Text="Length:" />
+            <TextBox Grid.Row="10" Grid.Column="1" Text="{Binding Data.SpecifiedPositionCount, Mode=TwoWay, TargetNullValue='', UpdateSourceTrigger=LostFocus}" />
+        </Grid>
+    </Grid>
+</Window>

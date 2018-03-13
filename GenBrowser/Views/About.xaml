@@ -1,0 +1,25 @@
+﻿<Window x:Class="About"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="About GenBrowser" Height="207.444" Width="420">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="/GenBrowser;component/Resources/Flame.png" Margin="10,10,0,10" />
+        <TextBlock Text="Firestarter Software" Grid.Column="1" Margin="10,10,10,127" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock Text="Stephen Sterley 2014" Grid.Column="1" Margin="10,55,0,0" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" />
+        <TextBlock Text="steve.sterley@googlemail.com" Grid.Column="1" Margin="10,85,0,0" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Height="31" />
+        <Button Grid.Column="1" Width="120" x:Name="btnOkay" Margin="10,131,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid Width="120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="/GenBrowser;component/Resources/Checked16.png" Stretch="None" />
+                <TextBlock Grid.Column="1" Text="Okay" VerticalAlignment="Center" />
+            </Grid>
+        </Button>
+    </Grid>
+</Window>

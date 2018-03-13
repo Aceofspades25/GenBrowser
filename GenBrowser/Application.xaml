@@ -1,0 +1,59 @@
+﻿<Application x:Class="Application"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:gb="clr-namespace:GenBrowser" 
+    StartupUri="Views\SummariseBLATResults.xaml"
+ShutdownMode="OnMainWindowClose">
+    <Application.Resources>
+        <Style x:Key="HeaderBlock" TargetType="TextBlock">
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Wingdings" />
+        </Style>
+        <Style x:Key="GBlock" TargetType="TextBlock">
+            <Setter Property="Background" Value="Red" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Text" Value="G" />
+        </Style>
+        <Style x:Key="ABlock" TargetType="TextBlock">
+            <Setter Property="Background" Value="Orange" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Text" Value="A" />
+        </Style>
+        <Style x:Key="CBlock" TargetType="TextBlock">
+            <Setter Property="Background" Value="#FF0097FF" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Text" Value="C" />
+        </Style>
+        <Style x:Key="TBlock" TargetType="TextBlock">
+            <Setter Property="Background" Value="#FF68B868" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Text" Value="T" />
+        </Style>
+        <Style x:Key="NBlock" TargetType="TextBlock">
+            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Text" Value="N" />
+        </Style>
+        <Style x:Key="GapBlock" TargetType="TextBlock">
+            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Text" Value="-" />
+        </Style>
+        <Style x:Key="SelectedBlock" TargetType="TextBlock">
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <Style x:Key="SpeciesPanel" TargetType="StackPanel">
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="Orientation" Value="Vertical" />
+        </Style>
+        <Style x:Key="SpeciesName" TargetType="ItemsControl">
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </Application.Resources>
+</Application>
